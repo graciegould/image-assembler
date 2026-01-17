@@ -75,60 +75,100 @@ export default function DynamicInterpolation({
 
       <div style={{
         position: 'fixed',
-        bottom: 40,
-        left: '50%',
-        transform: 'translateX(-50%)',
+        right: 20,
+        top: '50%',
+        transform: 'translateY(-50%)',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        gap: 12,
+        alignItems: 'flex-start',
+        gap: 16,
         background: 'rgba(0,0,0,0.7)',
-        padding: '16px 24px',
+        padding: '20px 16px',
         borderRadius: 12,
         color: 'white',
       }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-          <span style={{ fontSize: 14 }}>Animation: {animationState}%</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Animation</span>
           <input
             type="range"
             min={0}
             max={100}
             value={animationState}
             onChange={(e) => setAnimationState(Number(e.target.value))}
-            style={{ width: 300 }}
+            style={{ width: 120 }}
           />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{animationState}%</span>
         </div>
 
-        <div style={{ display: 'flex', gap: 24 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12 }}>Start Opacity: {startOpacity.toFixed(2)}</span>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={startOpacity}
-              onChange={(e) => setStartOpacity(Number(e.target.value))}
-              style={{ width: 120 }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12 }}>End Opacity: {endOpacity.toFixed(2)}</span>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={endOpacity}
-              onChange={(e) => setEndOpacity(Number(e.target.value))}
-              style={{ width: 120 }}
-            />
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Start Opacity</span>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={startOpacity}
+            onChange={(e) => setStartOpacity(Number(e.target.value))}
+            style={{ width: 120 }}
+          />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{startOpacity.toFixed(2)}</span>
         </div>
 
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-          <span style={{ fontSize: 12 }}>Shape:</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>End Opacity</span>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={endOpacity}
+            onChange={(e) => setEndOpacity(Number(e.target.value))}
+            style={{ width: 120 }}
+          />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{endOpacity.toFixed(2)}</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Position X</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={positionX}
+            onChange={(e) => setPositionX(Number(e.target.value))}
+            style={{ width: 120 }}
+          />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{positionX}%</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Position Y</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={positionY}
+            onChange={(e) => setPositionY(Number(e.target.value))}
+            style={{ width: 120 }}
+          />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{positionY}%</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Scale</span>
+          <input
+            type="range"
+            min={10}
+            max={100}
+            value={scale}
+            onChange={(e) => setScale(Number(e.target.value))}
+            style={{ width: 120 }}
+          />
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{scale}%</span>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+          <span style={{ fontSize: 12, width: 80 }}>Shape</span>
           <label style={{ fontSize: 12, cursor: 'pointer' }}>
             <input
               type="radio"
@@ -151,44 +191,6 @@ export default function DynamicInterpolation({
             />
             Square
           </label>
-        </div>
-
-        <div style={{ display: 'flex', gap: 24 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12 }}>Position X: {positionX}%</span>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={positionX}
-              onChange={(e) => setPositionX(Number(e.target.value))}
-              style={{ width: 100 }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12 }}>Position Y: {positionY}%</span>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={positionY}
-              onChange={(e) => setPositionY(Number(e.target.value))}
-              style={{ width: 100 }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 12 }}>Scale: {scale}%</span>
-            <input
-              type="range"
-              min={10}
-              max={100}
-              value={scale}
-              onChange={(e) => setScale(Number(e.target.value))}
-              style={{ width: 100 }}
-            />
-          </div>
         </div>
       </div>
     </>

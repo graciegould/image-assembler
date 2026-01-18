@@ -29,7 +29,7 @@ import { ImageAssembler } from './ImageAssembler';
  ![Demo 2](./demo3.gif)
 
 ### Controlled Animation
-![Demo 1](./demo1.gif)
+![Demo 1](./demo2.gif)
 
 ```tsx
 import { ImageAssembler } from './ImageAssembler';

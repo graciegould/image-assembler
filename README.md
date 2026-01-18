@@ -26,7 +26,7 @@ import { ImageAssembler } from './ImageAssembler';
   targetPosition="center"
 />
 ```
- ![Demo 2](./demo2.gif)
+ ![Demo 2](./demo3.gif)
 
 ### Controlled Animation
 ![Demo 1](./demo1.gif)

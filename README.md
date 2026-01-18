@@ -26,10 +26,10 @@ import { ImageAssembler } from './ImageAssembler';
   targetPosition="center"
 />
 ```
- ![Demo 2](./demo3.gif)
+ ![Demo 2](./demo2.gif)
 
 ### Controlled Animation
-![Demo 1](./demo2.gif)
+![Demo 1](./demo3.gif)
 
 ```tsx
 import { ImageAssembler } from './ImageAssembler';

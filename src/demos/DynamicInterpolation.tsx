@@ -1,31 +1,15 @@
 import { useState } from 'react';
 import ImageAssembler from '../ImageAssembler/ImageAssembler';
-import type { PieceShape } from '../ImageAssembler/types';
+import type { PieceShape, ImageAssemblerProps } from '../ImageAssembler/types';
 import sunflower from '../../images/sunflower.png';
 
-interface DynamicInterpolationProps {
-  /** Image URL (defaults to sunflower) */
-  imageUrl?: string;
-  /** Number of grid divisions */
-  gridSize?: number;
-  /** Initial piece shape */
-  initialShape?: PieceShape;
-  /** Initial animation state (0-100) */
-  initialAnimationState?: number;
-  /** Initial start opacity */
-  initialStartOpacity?: number;
-  /** Initial end opacity */
-  initialEndOpacity?: number;
-  /** Initial X position (0-100%) */
+interface DynamicInterpolationProps extends ImageAssemblerProps {
+  /** Initial X position for target (0-100%) */
   initialPositionX?: number;
-  /** Initial Y position (0-100%) */
+  /** Initial Y position for target (0-100%) */
   initialPositionY?: number;
-  /** Initial scale (10-100%) */
+  /** Initial scale percentage (10-100%) */
   initialScale?: number;
-  /** Maintain aspect ratio on resize */
-  maintainAspectRatio?: boolean;
-  /** Animation duration (affects stagger timing) */
-  duration?: number;
 }
 
 /**
@@ -38,20 +22,21 @@ interface DynamicInterpolationProps {
 export default function DynamicInterpolation({
   imageUrl = sunflower,
   gridSize = 10,
-  initialShape = 'square',
-  initialAnimationState = 0,
-  initialStartOpacity = 0.1,
-  initialEndOpacity = 1,
+  shape = 'square',
+  animationState = 0,
+  startOpacity = 0.1,
+  endOpacity = 1,
   initialPositionX = 50,
   initialPositionY = 50,
   initialScale = 80,
   maintainAspectRatio = true,
   duration = 4,
+  dynamicAnimation = true,
 }: DynamicInterpolationProps) {
-  const [animationState, setAnimationState] = useState(initialAnimationState);
-  const [startOpacity, setStartOpacity] = useState(initialStartOpacity);
-  const [endOpacity, setEndOpacity] = useState(initialEndOpacity);
-  const [shape, setShape] = useState<PieceShape>(initialShape);
+  const [animationStateValue, setAnimationStateValue] = useState(animationState);
+  const [startOpacityValue, setStartOpacityValue] = useState(startOpacity);
+  const [endOpacityValue, setEndOpacityValue] = useState(endOpacity);
+  const [shapeValue, setShapeValue] = useState<PieceShape>(shape as PieceShape);
   const [positionX, setPositionX] = useState(initialPositionX);
   const [positionY, setPositionY] = useState(initialPositionY);
   const [scale, setScale] = useState(initialScale);
@@ -59,15 +44,15 @@ export default function DynamicInterpolation({
   return (
     <>
       <ImageAssembler
-        key={shape} // Force remount when shape changes
+        key={shapeValue} // Force remount when shape changes
         imageUrl={imageUrl}
         gridSize={gridSize}
         maintainAspectRatio={maintainAspectRatio}
-        dynamicAnimation={true}
-        animationState={animationState}
-        startOpacity={startOpacity}
-        endOpacity={endOpacity}
-        shape={shape}
+        dynamicAnimation={dynamicAnimation}
+        animationState={animationStateValue}
+        startOpacity={startOpacityValue}
+        endOpacity={endOpacityValue}
+        shape={shapeValue}
         targetPosition={{ x: positionX, y: positionY }}
         imageWidth={`${scale}%`}
         duration={duration}
@@ -93,11 +78,11 @@ export default function DynamicInterpolation({
             type="range"
             min={0}
             max={100}
-            value={animationState}
-            onChange={(e) => setAnimationState(Number(e.target.value))}
+            value={animationStateValue}
+            onChange={(e) => setAnimationStateValue(Number(e.target.value))}
             style={{ width: 120 }}
           />
-          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{animationState}%</span>
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{animationStateValue}%</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -107,11 +92,11 @@ export default function DynamicInterpolation({
             min={0}
             max={1}
             step={0.01}
-            value={startOpacity}
-            onChange={(e) => setStartOpacity(Number(e.target.value))}
+            value={startOpacityValue}
+            onChange={(e) => setStartOpacityValue(Number(e.target.value))}
             style={{ width: 120 }}
           />
-          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{startOpacity.toFixed(2)}</span>
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{startOpacityValue.toFixed(2)}</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -121,11 +106,11 @@ export default function DynamicInterpolation({
             min={0}
             max={1}
             step={0.01}
-            value={endOpacity}
-            onChange={(e) => setEndOpacity(Number(e.target.value))}
+            value={endOpacityValue}
+            onChange={(e) => setEndOpacityValue(Number(e.target.value))}
             style={{ width: 120 }}
           />
-          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{endOpacity.toFixed(2)}</span>
+          <span style={{ fontSize: 11, width: 36, textAlign: 'right' }}>{endOpacityValue.toFixed(2)}</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -174,8 +159,8 @@ export default function DynamicInterpolation({
               type="radio"
               name="shape"
               value="triangle"
-              checked={shape === 'triangle'}
-              onChange={() => setShape('triangle')}
+              checked={shapeValue === 'triangle'}
+              onChange={() => setShapeValue('triangle')}
               style={{ marginRight: 4 }}
             />
             Triangle
@@ -185,8 +170,8 @@ export default function DynamicInterpolation({
               type="radio"
               name="shape"
               value="square"
-              checked={shape === 'square'}
-              onChange={() => setShape('square')}
+              checked={shapeValue === 'square'}
+              onChange={() => setShapeValue('square')}
               style={{ marginRight: 4 }}
             />
             Square

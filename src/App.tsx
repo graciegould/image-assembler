@@ -1,5 +1,5 @@
 import './App.css';
-import { AutoPlay, DynamicInterpolation } from './demos';
+import { DynamicInterpolation } from './demos';
 
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
       
       <DynamicInterpolation
         gridSize={10}
-        initialShape="square"
-        initialAnimationState={0}
-        initialStartOpacity={0.1}
-        initialEndOpacity={1}
+        shape="square"
+        animationState={0}
+        startOpacity={0.1}
+        endOpacity={1}
         initialPositionX={50}
         initialPositionY={50}
         initialScale={50}

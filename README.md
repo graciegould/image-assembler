@@ -2,6 +2,8 @@
 
 A React component that breaks images, videos, or solid colors into puzzle pieces and animates them assembling together. 
 
+![Demo](demo1.gif)
+
 ## Installation
 
 ```bash

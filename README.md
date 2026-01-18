@@ -2,7 +2,7 @@
 
 A React component that breaks images, videos, or solid colors into puzzle pieces and animates them assembling together. 
 
-![Demo 1](./demo1.gif) ![Demo 2](./demo2.gif)
+![Demo 1](./demo1.gif)
 
 ## Installation
 
@@ -26,8 +26,10 @@ import { ImageAssembler } from './ImageAssembler';
   targetPosition="center"
 />
 ```
+ ![Demo 2](./demo2.gif)
 
 ### Controlled Animation
+![Demo 1](./demo1.gif)
 
 ```tsx
 import { ImageAssembler } from './ImageAssembler';
